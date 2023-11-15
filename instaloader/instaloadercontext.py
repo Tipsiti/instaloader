@@ -369,7 +369,13 @@ class InstaloaderContext:
                 self._rate_controller.wait_before_query('iphone')
             if is_other_query:
                 self._rate_controller.wait_before_query('other')
+            
+            # disable the warning for using an insecure request
+            requests.packages.urllib3.disable_warnings(requests.packages.urllib3.exceptions.InsecureRequestWarning)
+
+            # send unverified request
             resp = sess.get('https://{0}/{1}'.format(host, path), params=params, allow_redirects=False, verify=False)
+
             if resp.status_code in self.fatal_status_codes:
                 redirect = " redirect to {}".format(resp.headers['location']) if 'location' in resp.headers else ""
                 body = ""
@@ -388,6 +394,7 @@ class InstaloaderContext:
                     raise AbortDownloadException("Redirected to login page. You've been logged out, please wait " +
                                                  "some time, recreate the session and try again")
                 if redirect_url.startswith('https://{}/'.format(host)):
+                    # send unverified request
                     resp = sess.get(redirect_url if redirect_url.endswith('/') else redirect_url + '/',
                                     params=params, allow_redirects=False, verify=False)
                 else:
