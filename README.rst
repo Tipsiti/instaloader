@@ -53,7 +53,7 @@
 ::
 
     instaloader [--comments] [--geotags]
-                [--stories] [--highlights] [--tagged] [--igtv]
+                [--stories] [--highlights] [--tagged] [--reels] [--igtv]
                 [--login YOUR-USERNAME] [--fast-update]
                 profile | "#hashtag" | :stories | :feed | :saved
 
@@ -125,7 +125,6 @@ Supporters
 
 | Instaloader is proudly sponsored by
 |  `@rocketapi-io <https://github.com/rocketapi-io>`__
-|  `@socialmethod <https://github.com/socialmethod>`__
 
 See `Alex' GitHub Sponsors <https://github.com/sponsors/aandergr>`__ page for
 how you can sponsor the development of Instaloader!
